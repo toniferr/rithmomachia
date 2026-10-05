@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; worker-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'">
+  <meta name="referrer" content="no-referrer">
+  <title>Rithmomachia · La batalla de los números</title>
+  <meta name="description" content="Rithmomachia, el juego medieval de los filósofos: juega contra la máquina y descubre su historia, sus reglas y sus matemáticas. · The medieval philosophers' game: play against the machine and learn its history, rules and mathematics.">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#2c2016">
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="fonts/eb-garamond-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/unifraktur-maguntia.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/main.css">
+  <script type="module" src="js/app.js"></script>
+</head>
+<body>
+  <a class="skip" href="#main">Saltar al contenido · Skip to content</a>
+  <header class="masthead">
+    <a class="brand" href="#/">
+      <svg viewBox="0 0 40 40" aria-hidden="true">
+        <rect x="3" y="3" width="34" height="34" fill="none" stroke="#d9b45a" stroke-width="2"/>
+        <circle cx="20" cy="20" r="13.5" fill="none" stroke="#d9b45a" stroke-width="1.6"/>
+        <polygon points="20,9.5 29.5,26 10.5,26" fill="#a3301d" stroke="#ecd08a" stroke-width="1.2"/>
+      </svg>
+      <span><span class="brand-name">Rithmomachia</span><span class="brand-sub" id="brand-sub">La batalla de los números</span></span>
+    </a>
+    <nav class="nav" aria-label="Rithmomachia">
+      <a href="#/" data-nav="home">Portada</a>
+      <a href="#/play" data-nav="play">Jugar</a>
+      <a href="#/codex" data-nav="codex">Códice</a>
+      <span class="sep" aria-hidden="true"></span>
+      <button type="button" id="lang">EN</button>
+      <button type="button" id="theme">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c1.6 2.4 3 4.2 3 6.3A3 3 0 0 1 12 11.4a3 3 0 0 1-3-3.1C9 6.2 10.4 4.4 12 2z" fill="currentColor"/><rect x="9.5" y="12.5" width="5" height="8.5" rx="0.8" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M6 22h12" stroke="currentColor" stroke-width="1.6"/></svg>
+      </button>
+    </nav>
+  </header>
+  <main id="main" tabindex="-1">
+    <noscript><p class="folio home">Rithmomachia necesita JavaScript para jugar. · Rithmomachia needs JavaScript to play.</p></noscript>
+  </main>
+  <footer class="colophon" id="colophon"></footer>
+  <div class="toasts" aria-live="polite"></div>
+</body>
+</html>

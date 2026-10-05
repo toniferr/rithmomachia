@@ -1,0 +1,14 @@
+{
+  "name": "rithmomachia",
+  "private": true,
+  "type": "module",
+  "description": "Rithmomachia, the medieval battle of numbers, playable in the browser against the machine.",
+  "scripts": {
+    "test": "node --test \"tests/*.test.mjs\"",
+    "selfplay": "node scripts/selfplay.mjs",
+    "serve": "python3 -m http.server 8000 --directory site"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
