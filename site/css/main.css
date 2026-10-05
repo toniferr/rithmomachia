@@ -1351,6 +1351,89 @@ dl.glossary dd {
   font-style: italic;
 }
 
+/* ---------- Where to play ---------- */
+
+.where {
+  padding: 36px clamp(18px, 5vw, 64px) 48px;
+}
+.where > p,
+.where > dl {
+  max-width: 760px;
+}
+.platforms {
+  list-style: none;
+  padding: 0;
+  margin: 28px 0 8px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 14px;
+}
+.platform {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 14px 16px;
+  border: 1px solid color-mix(in srgb, var(--board-line) 40%, transparent);
+  background: color-mix(in srgb, var(--vellum) 55%, transparent);
+}
+.platform.live {
+  border-color: var(--gold);
+  box-shadow: inset 0 0 0 3px color-mix(in srgb, var(--vellum-2) 80%, transparent),
+    inset 0 0 0 4px color-mix(in srgb, var(--gold) 45%, transparent);
+}
+.platform.soon {
+  opacity: 0.72;
+}
+.platform-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+}
+.platform-head b {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--lapis);
+}
+.platform p {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--ink-soft);
+}
+.platform .price {
+  font-weight: 600;
+  color: var(--ink);
+  font-variant: small-caps;
+  letter-spacing: 0.05em;
+}
+.badge {
+  font-size: 0.82rem;
+  font-variant: small-caps;
+  letter-spacing: 0.08em;
+  padding: 1px 8px;
+  border: 1px solid currentColor;
+  border-radius: 2px;
+  color: var(--ink-faint);
+  white-space: nowrap;
+}
+.live .badge {
+  color: var(--verdigris);
+}
+.platform-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 6px;
+}
+.platform-actions small {
+  color: var(--verdigris);
+}
+[hidden] {
+  display: none !important;
+}
+
 /* ---------- Responsive ---------- */
 
 @media (max-width: 980px) {

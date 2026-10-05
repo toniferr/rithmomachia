@@ -7,6 +7,7 @@ import { loadGame, saveGame, loadSettings, saveSettings } from './store.js';
 import { WHITE, BLACK, GOALS, ARMY_VALUE } from './engine.js';
 import { chapters as chaptersEs } from './content/codex.es.js';
 import { chapters as chaptersEn } from './content/codex.en.js';
+import { PLATFORMS, TEXT as WHERE, REPO_URL, PRIVACY_UPDATED } from './content/platforms.js';
 
 const CODEX = { es: chaptersEs, en: chaptersEn };
 const main = document.getElementById('main');
@@ -202,6 +203,58 @@ function playView() {
   });
 }
 
+// Chrome/Edge offer installation through this event; the "Install" button replays it.
+let installPrompt = null;
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  installPrompt = e;
+  document.querySelectorAll('[data-install]').forEach((b) => { b.hidden = false; });
+});
+window.addEventListener('appinstalled', () => { installPrompt = null; render(true); });
+
+const isStandalone = () => matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
+
+function whereView() {
+  const W = WHERE[getLang()];
+  document.title = `${W.title} · ${t('title')}`;
+  const cards = PLATFORMS.map((p) => {
+    const txt = W.platforms[p.id];
+    const live = p.status === 'available';
+    const actions = h('div', { class: 'platform-actions' });
+    if (p.url) actions.append(h('a', { class: 'btn small primary', href: p.id === 'web' ? '#/play' : p.url }, W.open));
+    if (p.install) {
+      if (isStandalone()) actions.append(h('small', {}, W.installed));
+      else {
+        const btn = h('button', {
+          class: 'btn small primary', type: 'button', 'data-install': '', hidden: !installPrompt,
+          onclick: async () => { if (!installPrompt) return; installPrompt.prompt(); await installPrompt.userChoice; installPrompt = null; btn.hidden = true; },
+        }, W.install);
+        actions.append(btn, h('a', { class: 'btn small', href: '#how' , onclick: (e) => { e.preventDefault(); document.getElementById('how').scrollIntoView({ behavior: 'smooth' }); } }, W.howTitle));
+      }
+    }
+    const price = W.prices[p.price];
+    return h('li', { class: `platform ${live ? 'live' : 'soon'}` },
+      h('div', { class: 'platform-head' }, h('b', {}, txt.name), h('span', { class: 'badge' }, live ? W.available : W.soon)),
+      h('p', {}, txt.desc),
+      price ? h('p', { class: 'price' }, price) : null,
+      live ? actions : null);
+  });
+  const page = h('div', { class: 'folio where' },
+    h('h1', {}, W.title),
+    h('p', { class: 'lede' }, W.lede),
+    h('ul', { class: 'platforms' }, ...cards),
+    h('h2', { id: 'price' }, W.priceTitle),
+    ...W.price.map((x) => h('p', {}, x)),
+    h('h2', { id: 'how' }, W.howTitle),
+    h('dl', { class: 'glossary' }, ...W.how.flatMap(([k, v]) => [h('dt', {}, k), h('dd', {}, v)])),
+    h('p', {}, h('i', {}, W.howNote)),
+    h('h2', { id: 'privacy' }, W.privacyTitle),
+    ...W.privacy.map((x) => h('p', {}, x)),
+    h('p', {}, `${W.privacyContact} `, h('a', { href: `${REPO_URL}/issues` }, 'GitHub'), '.'),
+    h('p', { class: 'latin' }, `${W.privacyUpdated}: ${PRIVACY_UPDATED}`));
+  main.replaceChildren(page);
+}
+
 function codexView(slug) {
   const list = chapters();
   const index = Math.max(0, list.findIndex((c) => c.slug === slug));
@@ -227,7 +280,7 @@ function codexView(slug) {
 function render(force = false) {
   const hash = location.hash.startsWith('#/') ? location.hash.slice(2) : '';
   const [section, arg] = hash.split('/');
-  const route = section === 'play' ? 'play' : section === 'codex' ? 'codex' : 'home';
+  const route = ['play', 'codex', 'where'].includes(section) ? section : 'home';
   const key = `${getLang()}|${hash}`;
   if (!force && key === currentRoute) return;
   const sameSection = currentRoute.split('|')[1]?.split('/')[0] === section;
@@ -236,6 +289,7 @@ function render(force = false) {
   applyChrome(route);
   if (route === 'play') playView();
   else if (route === 'codex') codexView(arg || 'history');
+  else if (route === 'where') whereView();
   else homeView();
   if (!sameSection || route === 'codex') window.scrollTo(0, 0);
 }
@@ -251,6 +305,11 @@ if (urlLang) setLang(urlLang);
 else setLang(getLang());
 
 initTheme();
+
+// Offline support. Not on localhost, where a cache-first worker would hide every edit.
+if ('serviceWorker' in navigator && !['localhost', '127.0.0.1'].includes(location.hostname)) {
+  navigator.serviceWorker.register('sw.js').catch(() => { /* the site works without it */ });
+}
 // In-page anchors (#main, #setup) are not routes.
 window.addEventListener('hashchange', () => {
   if (!location.hash || location.hash.startsWith('#/')) render();

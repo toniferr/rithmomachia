@@ -3,13 +3,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; worker-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; worker-src 'self'; connect-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'">
   <meta name="referrer" content="no-referrer">
   <title>Rithmomachia · The battle of numbers</title>
   <meta name="description" content="Rithmomachia, the medieval philosophers' game: play against the machine and learn its history, rules and mathematics. · El juego medieval de los filósofos: juega contra la máquina y descubre su historia, sus reglas y sus matemáticas.">
   <meta name="color-scheme" content="light dark">
   <meta name="theme-color" content="#2c2016">
   <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+  <link rel="manifest" href="manifest.webmanifest">
   <link rel="preload" href="fonts/eb-garamond-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/unifraktur-maguntia.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/main.css">
@@ -30,6 +32,7 @@
       <a href="#/" data-nav="home">Home</a>
       <a href="#/play" data-nav="play">Play</a>
       <a href="#/codex" data-nav="codex">Codex</a>
+      <a href="#/where" data-nav="where">Where to play</a>
       <span class="sep" aria-hidden="true"></span>
       <button type="button" id="lang">ES</button>
       <button type="button" id="theme">

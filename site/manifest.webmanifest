@@ -1,0 +1,19 @@
+{
+  "name": "Rithmomachia · The battle of numbers",
+  "short_name": "Rithmomachia",
+  "description": "The medieval philosophers' game: play against the machine and learn its history, rules and mathematics.",
+  "id": "./",
+  "start_url": "./#/",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#2c2016",
+  "theme_color": "#2c2016",
+  "lang": "en",
+  "categories": ["games", "education"],
+  "icons": [
+    { "src": "img/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "img/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "img/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

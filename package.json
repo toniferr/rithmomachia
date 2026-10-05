@@ -6,7 +6,8 @@
   "scripts": {
     "test": "node --test \"tests/*.test.mjs\"",
     "selfplay": "node scripts/selfplay.mjs",
-    "serve": "python3 -m http.server 8000 --directory site"
+    "serve": "python3 -m http.server 8000 --directory site",
+    "package:itch": "python3 scripts/package_itch.py"
   },
   "engines": {
     "node": ">=20"
