@@ -29,7 +29,14 @@ python3 scripts/package_itch.py     # → dist/rithmomachia-itch.zip (index.html
 | Screenshots | `screenshot-1-game.png`, `screenshot-2-rules.png`, `screenshot-3-pieces.png`, `screenshot-4-home.png` |
 | Visibility | Draft first; check the embedded game; then Public |
 
-To receive donations, set up payouts first: Settings → Payments (PayPal or Stripe, or “collected by itch.io”).
+To receive donations, choose a payment mode first (Settings → Payments):
+
+- **Collected by itch.io, paid out periodically** (recommended): itch.io is the seller, handles VAT and sales tax,
+  and pays out to PayPal or Payoneer after the tax interview (form W-8BEN for non-US residents).
+- **Direct to you**: payments land straight in your PayPal or Stripe account, but taxes on sales (EU VAT…) are your
+  job and itch.io invoices you later for its revenue share.
+
+The revenue share for itch.io is open (10 % by default, adjustable from 0 to 100 %).
 
 ## Description (paste into the page editor)
 

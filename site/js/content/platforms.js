@@ -10,7 +10,7 @@ export const PRIVACY_UPDATED = '2026-10-05';
 export const PLATFORMS = [
   { id: 'web', status: 'available', price: 'free', url: SITE_URL },
   { id: 'app', status: 'available', price: 'free', install: true },
-  { id: 'itch', status: 'soon', price: 'pwyw' },
+  { id: 'itch', status: 'available', price: 'pwyw', url: 'https://toniferr.itch.io/rithmomachia' },
   { id: 'play', status: 'soon', price: 'free' },
   { id: 'msstore', status: 'soon', price: 'free' },
 ];
