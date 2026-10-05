@@ -288,7 +288,7 @@ function detect() {
     const saved = localStorage.getItem('rithmo.lang');
     if (LANGS.includes(saved)) return saved;
   } catch { /* storage unavailable */ }
-  return (navigator.language || 'en').toLowerCase().startsWith('es') ? 'es' : 'en';
+  return 'en'; // English by default; Spanish via the ES button or ?lang=es
 }
 
 let lang = detect();
